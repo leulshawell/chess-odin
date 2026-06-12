@@ -21,8 +21,10 @@ main:: proc(){
 	chess.init(board)
 	
 	m: chess.Move;
-	m = { from=1, to=18 }
+	m = { from=36, to=43}
 	chess.move(&m)
+
+
 
 	chess.render_board_text();
 
