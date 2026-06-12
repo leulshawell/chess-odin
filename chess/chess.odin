@@ -1,4 +1,4 @@
-package main
+package chess
 
 
 import "core:fmt"
@@ -6,6 +6,11 @@ import "core:fmt"
 
 Board :: [64]u8
 
+board: Board;
+
+init:: proc(b: Board){
+    board = b
+}
 
 @(private="file")
 _cell_to_index :: proc(cell: []u8) -> u8 {
