@@ -16,15 +16,15 @@ board: Board = {
 
 main:: proc(){
 	
-	
-	m: Move = {
-		from=1,
-		to=34
-	}
-
-
+	m: Move;
+	m = { from=1, to=18 }
 	move(&m)
 
+
+	
+	// mm: Move = { from=63, to=1 }
+	// move(&mm)
+	
 	render_board_text();
 
 }

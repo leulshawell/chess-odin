@@ -53,29 +53,26 @@ move_piece :: proc(move: ^Move){
 
 
 
-piece_can_move :: proc(from: u8, to:u8){
+piece_can_move :: proc(p: u8, from: u8, to:u8) -> bool {
     from_x, from_y := from / 8, from % 8 //col, row
     to_x, to_y := to / 8, to % 8 //col, row
 
-    fmt.printf("from (%u, %u) to (%u, %u)\n", from_x, from_y, to_x, to_y)
+    return true
 
 }
 
-//Check if a move is legal for the current board state
+//is a move legal
 is_legal :: proc(move: ^Move) -> bool{
-    //get the player color what color piece they are trying to move
-    from_is_white := _piece_is_white(board[move.from])
-    to_is_white   := _piece_is_white(board[move.to])
-
-    //can't move to same color piece
-    if from_is_white == to_is_white { return false }
-
-    piece_can_move(move.from, move.to)
+    //check if not empty cell
+    if board[move.to] != '.'{
+        from_is_white := _piece_is_white(board[move.from])
+        to_is_white   := _piece_is_white(board[move.to])
+        //can't move to same color piece
+        if from_is_white == to_is_white { return false }
+    }
 
     //check if piece can move there
+    return piece_can_move(board[move.from], move.from, move.to)
 
-    //check for piece abitlity
-
-    return true;
 }
 
