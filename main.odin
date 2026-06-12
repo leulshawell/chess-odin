@@ -21,7 +21,9 @@ main:: proc(){
 	chess.init(board)
 	
 	m: chess.Move;
-	m = { from=36, to=43}
+
+	//move the white night
+	m = { from=57, to=42}
 	chess.move(&m)
 
 
