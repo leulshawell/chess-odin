@@ -20,20 +20,20 @@ main:: proc(){
 
 	game := chess.init_game(&board)
 
-	m := chess.Move{ from=51, to=35}
+	m := chess.Move{from=51, to=35}
 	chess.next(game, &m)
 
-	m = chess.Move{ from=11, to=27}
+	m = chess.Move{from=11, to=27}
 	chess.next(game, &m)
 
 
-	m = chess.Move{ from=50, to=34}
+	m = chess.Move{from=50, to=34}
 	chess.next(game, &m)
 
-	m = chess.Move{ from=12, to=20}
+	m = chess.Move{from=12, to=20}
 	chess.next(game, &m)
 
-	m = chess.Move{ from=34, to=26}
+	m = chess.Move{from=34, to=26}
 	chess.next(game, &m)
 
 
