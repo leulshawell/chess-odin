@@ -4,10 +4,9 @@ import "core:fmt"
 import "core:math"
 
 Move :: struct {
-    from : u8,
-    to   : u8
+    from: u8,
+    to  : u8
 }
-
 
 
 piece_is_white :: proc(p: u8) -> bool {
@@ -16,10 +15,10 @@ piece_is_white :: proc(p: u8) -> bool {
 
 
 
-move :: proc(move: ^Move) -> bool {
-    isLegal := is_legal(move)
+move :: proc(board: ^Board, move: ^Move) -> bool {
+    isLegal := is_legal(board, move)
     if isLegal {
-        move_piece(move)
+        move_piece(board, move)
         return true
     }
 
@@ -28,7 +27,7 @@ move :: proc(move: ^Move) -> bool {
 }
 
 //move a piece
-move_piece :: proc(move: ^Move){
+move_piece :: proc(board: ^Board, move: ^Move){
     board[move.to] = board[move.from]
     board[move.from] = '.'
 }
@@ -37,7 +36,7 @@ move_piece :: proc(move: ^Move){
 
 
 //is a move legal
-is_legal :: proc(move: ^Move) -> bool{
+is_legal :: proc(board: ^Board, move: ^Move) -> bool{
     //check if not empty cell
     if board[move.to] != '.'{
         from_is_white := piece_is_white(board[move.from])
@@ -66,10 +65,10 @@ piece_can_move :: proc(p: u8, from: u8, to:u8) -> bool {
     switch (p){
         //powns
         case 'p':  
-            if (y_jump == 1) ||  (y_jump == 2 && from_y == 1) {return true}
+            if (y_jump == 1) || (y_jump == 2 && from_y == 1) {return true}
 
         case 'P':
-            if (y_jump == 1) ||  (y_jump == 2 && from_y == 6) {return true}
+            if (y_jump == 1) || (y_jump == 2 && from_y == 6) {return true}
         
         //bishops
         case 'b', 'B':  
@@ -94,7 +93,11 @@ piece_can_move :: proc(p: u8, from: u8, to:u8) -> bool {
 
         //kings
         case 'k', 'K':  
-            if(x_jump < 2 && y_jump < 2 && ((y_jump + x_jump) < 3) ){return true}
+            if(x_jump < 2 && y_jump < 2 && ((y_jump + x_jump) < 3) ){
+                //make sure the king is not moving to a check
+
+                return true
+            }
 
     }
     return false

@@ -18,16 +18,24 @@ main:: proc(){
 		'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R',
 	}
 
-	chess.init(board)
-	
-	m: chess.Move;
+	game := chess.init_game(&board)
 
-	//move the white night
-	m = { from=57, to=42}
-	chess.move(&m)
+	m := chess.Move{ from=51, to=35}
+	chess.next(game, &m)
+
+	m = chess.Move{ from=11, to=27}
+	chess.next(game, &m)
 
 
+	m = chess.Move{ from=50, to=34}
+	chess.next(game, &m)
 
-	chess.render_board_text();
+	m = chess.Move{ from=12, to=20}
+	chess.next(game, &m)
+
+	m = chess.Move{ from=34, to=26}
+	chess.next(game, &m)
+
+
 
 }
